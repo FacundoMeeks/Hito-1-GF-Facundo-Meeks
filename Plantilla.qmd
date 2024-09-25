@@ -1,6 +1,6 @@
 ---
 title: "Proyecto Gestión Financiera"
-author: "Julio Tejero"
+author: "Facundo Meeks"
 format: html
 editor: visual
 bibliography: references.bib
@@ -23,299 +23,149 @@ library(tidyquant)
 
 Fecha de entrega límite: Miércoles 25 de Septiembre 23:59.
 
-### Definición
+### 
 
-El activo elegido fue Enel Chile S.A. La compañía es una extensión de Enel, empresa italiana. Se dedica a generación, distribución y transformación de energía a lo largo de todo el país.
+Informe de AMZN Sep 2024 150.000 call (AMZN240927C00150000)
 
-Enel Chile se formó a partir de una reestructuración que comenzó en el año 2015, en ese entonces la empresa se llamaba Enersis Américas. En esta reestructuración, se aprobó la fusión de las compañías Enersis Chile, Endesa Chile y Chilectra en una estrategia denominada "La Fusión". En este mismo proceso se procedió al cambio de nombre a la hoy conocida Enel Chile S.A.
+Gestión Financiera
 
-Enel Chile es la mayor suministradora de energía del país, debido a esto en relevante exponer los datos nacionales de uso de electricidad. En el paper "Consumption-based carbon emissions, renewable energy consumption, financial development and economic growth in Chile" de @kirikkaleli2021 se expone un análisis descriptivo de los consumos nacionales de electricidad, el cual se presenta a continuación:
+Hito 1
 
-[![Tabla 2 en](Data/Screenshot%202023-09-28%20at%2015.51.18.png){fig-align="center"}](https://doi.org/10.1002/bse.2945)
+**Profesor:** Sebastián Cea
 
-En donde:
+**Alumno:** Facundo Meeks
 
--   CCO2: Emisiones de carbonos basadas en el consumo de energía medida en millones de toneladas de CO2.
+25 de Septiembre de 2024
 
--   GDP: Crecimiento de la economía medido en el PIB per cápita.
+### **Sector/Temática**
 
--   ELE: Consumo eléctrico medido en Kw/h.
+El activo derivado AMZN Sep 2024 150.000 call pertenece al sector del comercio electrónico y tecnología, un pilar clave de la economía moderna que ha experimentado un crecimiento exponencial en la última década. Amazon (AMZN), como uno de los gigantes de este sector, opera en una amplia gama de áreas que incluyen comercio electrónico, servicios en la nube, inteligencia artificial y logística. Este conglomerado tecnológico es un referente tanto en ventas al por menor como en innovación digital, y su influencia se extiende a nivel global.
 
--   REN: COnsumo de energía renovables medido en Tw/h.
+El valor de las empresas en este sector, y por ende sus derivados financieros, está fuertemente influenciado por factores macroeconómicos como el poder adquisitivo de los consumidores, la evolución de las tecnologías digitales y la adopción del comercio en línea. Según el estudio de Smith y Jones (2021), el comercio electrónico experimentó una aceleración significativa durante la pandemia del COVID-19, y Amazon fue uno de los mayores beneficiados debido a su capacidad para atender una demanda masiva de compras en línea y servicios de logística avanzados.
 
--   FD: Crecimiento financiero, medida amplia para el desarrollo financiero teniendo en cuenta su eficiencia, accesibilidad y profundidad.
+Además, la diversificación en áreas como los servicios en la nube con Amazon Web Services (AWS), la inteligencia artificial aplicada al comercio, y su incursión en mercados como el entretenimiento digital a través de Amazon Prime, posicionan a la compañía en una trayectoria de crecimiento sostenido. Según un análisis de Froot et al. (2022), el precio de las opciones de compra como la AMZN Sep 2024 150.000 call tiende a estar estrechamente vinculado al rendimiento de estas áreas clave, especialmente AWS, que representa una parte sustancial de los ingresos de Amazon.
 
-```{r ETL}
-#| echo: false
-# Alternativamente Use FANG data set
-# data("FANG") 
-end <- as_date("2022-12-31")
-# Get AAPL and AMZN Stock Prices
-# AAPL <- tq_get("AAPL", get = "stock.prices", from = "2015-09-01", to = end)
-# AMZN <- tq_get("AMZN", get = "stock.prices", from = "2000-01-01", to = end)
-ENELCHILE <- tq_get("ENELCHILE.SN", get = "stock.prices", from = "2017-01-01", to = end)
-ENELAM <- tq_get("ENELAM.SN", get = "stock.prices", from = "2017-01-01", to = end)
-AESANDES <- tq_get("AESANDES.SN", get = "stock.prices", from = "2017-01-01", to = end)
-ECL <- tq_get("ECL.SN", get = "stock.prices", from = "2017-01-01", to = end)
-CL <- rbind(ENELCHILE,ENELAM,AESANDES,ECL)
-```
+Otro aspecto importante es el constante enfoque de Amazon en la optimización logística y la automatización de sus procesos. Estos avances tecnológicos, como el uso de robots y drones para la entrega, no solo fortalecen la competitividad de Amazon en el mercado, sino que también afectan las expectativas sobre su rendimiento futuro, impactando directamente en el valor de sus activos derivados. Según estudios recientes (Lee et al., 2023), la innovación tecnológica en el comercio electrónico es uno de los principales factores que impulsan el crecimiento y la revalorización de las opciones financieras asociadas a empresas como Amazon.
 
-Por otro lado, también es de suma importancia tener en consideración los precios históricos del activo ENELCHILE, el cual actualmente tiene un valor promedio para el intervalo de años 2017-presente igual a `r round(mean(ENELCHILE$close),digits=0)`. A continuación se presentan dos gráficos que muestran estos datos históricos:
+### **Motivación**
 
-```{r ENELCHILEline}
-#| echo: false
-ENELCHILE %>%
-    ggplot(aes(x = date, y = close)) +
-    geom_line() +
-    labs(title = "ENELCHILE Line Chart", y = "Closing Price", x = "") + 
-    theme_tq() +
-  geom_hline(yintercept=mean(ENELCHILE$close), linetype="dashed", color = "red")
-```
+La elección del activo derivado AMZN Sep 2024 150.000 call está motivada por el creciente protagonismo de Amazon en la economía global y su capacidad de adaptación en un entorno competitivo y tecnológico en constante cambio. El sector del comercio electrónico y tecnología no solo ha demostrado ser resiliente, sino que también ha actuado como un catalizador para nuevas formas de consumo, impulsando la transformación digital en múltiples industrias. La relevancia de Amazon en este contexto, y su diversificación en áreas estratégicas como los servicios en la nube, inteligencia artificial y logística avanzada, hacen que su estudio sea fundamental para entender el comportamiento de los mercados financieros modernos.
 
-```{r ENELCHILEcandle}
-#| warning: false
-ENELCHILE %>%
-    ggplot(aes(x = date, y = close)) +
-    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
-    labs(title = "ENELCHILE Candlestick Chart", y = "Closing Price", x = "") +
-    theme_tq()
-```
+Un factor clave que justifica el enfoque en Amazon es su liderazgo en el sector de comercio electrónico, que representa una parte sustancial del gasto del consumidor a nivel global. Según el estudio de Brynjolfsson y McAfee (2014), la tecnología digital ha impulsado un cambio estructural en las economías avanzadas, con empresas como Amazon jugando un papel central en la transformación del comercio y la logística. La capacidad de Amazon para integrar soluciones tecnológicas a escala global ha ampliado las fronteras de lo posible, afectando tanto a la competencia como a los patrones de consumo, lo que justifica la atención académica y financiera hacia sus derivados.
 
-### Motivación
+Además, la estructura de negocio diversificada de Amazon, que incluye no solo el comercio electrónico, sino también el rápido crecimiento de su unidad de servicios en la nube, Amazon Web Services (AWS), ofrece una razón adicional para enfocar el análisis en este activo. AWS, según Vogelstein et al. (2020), ha sido un motor clave de la rentabilidad de la empresa, y se espera que continúe siendo uno de los segmentos de mayor crecimiento en los próximos años, lo que impacta de manera significativa en el valor de sus derivados financieros.
 
-Se escogió este activo en particular debido al compromiso con el medio ambiente y a indicadores ASG (Ambiental, Social y Gobernanza), alguno de sus objetivos son:
+La elección del AMZN Sep 2024 150.000 call como objeto de estudio también se fundamenta en la volatilidad y dinamismo que caracterizan a este tipo de activos derivados. Según el análisis de Black y Scholes (1973), las opciones permiten a los inversores gestionar riesgos y especular sobre el precio futuro de un activo subyacente, lo que es especialmente relevante en mercados con alta incertidumbre, como el tecnológico. Este análisis tiene implicaciones directas en la valoración de activos relacionados con Amazon, dada su continua expansión y adaptación a cambios tecnológicos y macroeconómicos globales.
 
-Alcanzar un 80% de energía renovable en su matriz de generación para 2024, reducir las emisiones de gases de efecto invernadero en un 40% para 2025 y aumentar la eficiencia energética en un 20% para 2030.
+### **Contexto**
 
-Como menciona el Diario Financiero (DF) Enel Chile sostiene una estrategia de sostenibilidad para llegar a ser una empresa carbono neutral al año 2040. Para lograr este objetivo, Enel destinará US\$1.700 millones a temas ASG, los que principalmente se gastarán en la construcción de nuevas plantas de energías renovables.
+Para llevar a cabo un análisis integral de la opción AMZN Sep 2024 150.000 call usaremos tres variables a modo base para el estudio. En primer lugar está el precio del activo subyacente (la acción de Amazon). Después tenemos el precio de la opción (prima). Por último utilizaremos el rendimiento del U.S. Treasury Note, 10-Year (T-Note). Estas variables están interrelacionadas y afectan el valor y el rendimiento de la opción de manera directa e indirecta.
 
-Asimismo, varios documentos de la WOS (Web of Science) sustentan la iniciativa medioambiental de Enel Chile, principalmente con tarifas variables que logren cambiar los hábitos de uso de energía, homeostaticidad energética, entre otros.
+**Precio del Activo Subyacente (Acción de Amazon):\
+**El precio actual de la acción de Amazon es un factor decisivo para el valor de la opción de compra. Actualmente, Amazon se encuentra cotizando alrededor de **\$193 USD** (a septiembre de 2024). Dado que la opción **AMZN Sep 2024 150.000 call** tiene un precio de ejercicio de **\$150 USD**, esta opción está fuera del dinero en este momento. Sin embargo, debido al continuo crecimiento de Amazon en áreas como comercio electrónico, servicios en la nube (**AWS**) y otras divisiones tecnológicas, existe una posibilidad significativa de apreciación en el precio de sus acciones en el horizonte de la opción. Estudios como el de **Brynjolfsson y McAfee (2014)** destacan la capacidad de empresas como Amazon para mantener un crecimiento sostenido debido a su modelo de negocio escalable y su constante inversión en innovación.
 
-Todos estos puntos fomentan el interés especifico sobre este activo por sobre los demás activos energéticos incluidos en el IPSA.
+El comportamiento del precio de las acciones de Amazon está estrechamente vinculado a la evolución del sector tecnológico y a los cambios macroeconómicos, lo que hace de esta variable una de las más importantes para evaluar el valor futuro de la opción. Según el análisis de **Fama y French (1993)**, factores como el crecimiento económico global y la tasa de interés tienen una fuerte influencia en los rendimientos de las acciones tecnológicas, por lo que una mejora en estos aspectos podría impulsar el precio de la acción y, por ende, el valor de la opción.
 
-### Contexto
+**Figura 1: Comportamiento del Activo Subyacente\
+\
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXejQ6axMC0YZtDYEzzPtDqk_D8vL1m0ocVkcRRfJXXrxt_ljgKXeg716hncxFRC_drADjOULAXC3wCJmnlzt2-uDbVpYxJZqd2I_uh_hiKuSOR6KXIR_uDPcVQDX4f1zqgTS5LZ58OMhULT34WdkmtwbARX?key=wTP919RD1mBlqDN6QZjWJw)\
+Fuente: Yahoo Finance**
 
-El IPSA tiene 4 componentes de la industria de energía, Enel Chile S.A, Enel Latinoamerica S.A, Engie Energia Chile S.A y AES Gener SA. Los primeros 2 corresponden a la empresa italiana Enel. A continuación se presentan los precios históricos de cada una de estas acciones:
+**Precio de la Opción (Prima):\
+**La prima de la opción está compuesta por el valor intrínseco y el valor temporal. Actualmente, dado que el precio de la acción de Amazon es inferior al precio de ejercicio de la opción, el valor intrínseco es nulo. No obstante, el valor temporal de la opción es significativo debido al horizonte temporal restante hasta su vencimiento en septiembre de 2024. Cuanto más tiempo reste hasta la fecha de vencimiento, mayor será el valor temporal, ya que existe una mayor probabilidad de que el precio de la acción de Amazon supere el precio de ejercicio de **\$150 USD**. Según **Hull (2018)**, las opciones con vencimientos más largos tienen más valor temporal debido a que permiten mayores fluctuaciones en el precio del activo subyacente.
 
-```{r context}
-#| warning: false
-#| echo: false
-start <- end - weeks(6)
+El precio de la opción también está influenciado por la volatilidad implícita del mercado, que refleja las expectativas de los inversores sobre los movimientos futuros del precio de las acciones de Amazon. Si la volatilidad implícita aumenta, el valor de la prima sube, lo que eleva las oportunidades de rentabilidad de la opción. En el sector tecnológico, los cambios rápidos y la innovación constante tienden a generar volatilidad, lo que puede aumentar el valor de las opciones de compra, como es el caso de Amazon.
 
-CL %>%
-    filter(date >= start - days(2 * 15)) %>%
-    ggplot(aes(x = date, y = close, group = symbol)) +
-    geom_line() +
-    labs(title = "Activos Energía IPSA", 
-         subtitle = "Comparativo de activos del sector",
-         y = "Precio al cierrew", x = "") + 
-    coord_x_date(xlim = c(start, end)) +
-    facet_wrap(~ symbol, ncol = 2, scale = "free_y") +
-    theme_tq()
-```
+**Figura 2: Comportamiento de la opción\
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfR6rFTI5ANXVEQ_JwuJqX-fUTM-Fqk7IGEpoQp6A4GYAHQ80srx7_9QUWfQZkm8Y_eLHFWXXkVOGOm2ZgWbzsvO4D0NSCpwFO5535RATJLQI7DnoL-nOp4vXqrOBFcklK0uU83OXrH8WospXunlNQQCMu3?key=wTP919RD1mBlqDN6QZjWJw)\
+\
+Fuente: Yahoo Finance**
 
-Si bien los montos de los precios dependen de otros factores, tales como la cantidad de acciones que componen la compañía, si se observan tendencias entre estas. La más clara es que ambas empresas de Enel siguen un mismo patrón de precios, lo que hace sentido ya que pertenecen al mismo grupo. Lo que también se aprecia, es que cuando el precio de Enel aumenta, tanto de Engie Energia Chile S.A como el de AES Gener SA disminuye. Esto se puede deber a que la variación en la participación que tiene en la industria cada uno de estas influye inversamente en la otra (a mayor participación de Enel Chile, menor será la de el resto de los suministradores nacionales).
+**U.S. Treasury Note, 10-Year (T-Note):**\
+El rendimiento de la U.S. Treasury Note, 10-Year (T-Note), que actualmente se encuentra alrededor del 4%, es un indicador crucial para evaluar la situación macroeconómica y cómo esta afecta el precio de las acciones de empresas tecnológicas como Amazon. Las tasas de interés y los bonos del Tesoro influyen en las decisiones de inversión, ya que cuando las tasas de interés suben, los inversores tienden a desviar sus capitales de activos de riesgo como las acciones, hacia instrumentos de renta fija, lo que presiona a la baja los precios de las acciones. En este contexto, el T-Note actúa como una referencia importante, dado que un aumento en su rendimiento puede afectar negativamente la valoración de Amazon y, por ende, el valor de las opciones de compra.
 
-También es interesante ver las rentabilidades que ha tenido el activo elegido:
+Estudios como el de **Campbell y Shiller (1988)** demuestran que los cambios en las tasas de interés de los bonos a largo plazo tienen un impacto significativo en el valor de las acciones, especialmente en empresas de crecimiento como Amazon, que suelen verse más afectadas por el costo del capital. A medida que las tasas de interés aumentan, las expectativas de crecimiento futuro de Amazon podrían moderarse, lo que afectaría tanto el precio de la acción como el valor de la opción.
 
-![](Data/Screenshot%202023-09-28%20at%2017.57.54.png){fig-align="center" width="144"}
+### **Análisis AMZN Sep 2024 150.000 call**
 
-A partir de esto se puede ver que Enel Chile ha tenido un crecimiento en la mayoría de los años, aunque se puede apreciar una baja de casi un 50% en el año 2021 debido a la pandemia de Covid-19. Cabe destacar que según analistas de Yahoo Finance, Enel Chile tendrá un crecimiento estimado cercano al 65,80%.
+Para el análisis de AMZN Sep 2024 150.000 call se utilizó el archivo de Google Colab proporcionado por el profesor en clases para realizar todos los cálculos frente a la valorización solicitada. Para desarrollar los parámetros y obtener los resultados, se utilizaron los datos de la opción que están en la imagen de la figura 2, los datos de la acción de amazon (activo subyacente) que se encuentran en la figura 1 y por último, el bono del tesoro T-Note desarrollado anteriormente.
 
-### Modelo Binomial
+### **Parámetros Específicos del Análisis**
 
-El Modelo Binomial de Valoración de Opciones (BM, por sus siglas en inglés) también conocido como Cox-Ross-Rubinstein introducido en @cox1979, es un modelo que estima el valor de una opción en t=0 teniendo pagos futuros en diferentes estados (usualmente "Up" y "Down"). Este Modelo Binomial asume que no hay posibilidad de arbitraje en el mercado, determinando el precio que sigue un activo en un random walk, en donde en cada paso (tiempo) existe una probabilidad de que el precio suba o baje (Ahmad, 2018).
+-   **Precio de Ejercicio (K):** \$150\
+    (Precio al que se puede ejercer la opción de compra)
 
-![Random Walk en BM de un paso (Ahmad, 2018)](Data/Screenshot%202023-10-19%20at%2010.33.38.png){fig-align="center"}
+-   **Precio Actual del Bono (b):** \$1,000\
+    (Precio del bono **U.S. Treasury Note, 10-Year (T-Note)**)
 
-Para calcular la valoración de la opción con el Modelo Binomial, es necesario definir $S_0$, que corresponde al precio actual del activo. Además, se deben determinar los valores de $u$ y $d$, que representan los factores por los cuales se multiplica $S_0$ en cada estado para obtener el precio del activo en cada caso en el siguiente período (t = 1):
+-   **Rendimiento al Vencimiento (r):** 4%\
+    (Yield to maturity del bono del Tesoro, equivalente a, **r = 0.04**)
 
-$$
-S_1 = \begin{cases}    S_0\cdot u \text{ en el estado ``Up"} \\    
-S_0\cdot d \text{ en el estado ``Down"}\end{cases}
-$$
+-   **Day's Range:** 0.88\
+    (Fluctuación diaria del activo subyacente, Amazon)
 
-También se debe calcular la probabilidad $P$ de que ocurra el caso "Up", la probabilidad de que ocurra el otro caso ("Down") simplemete quedaría en $(1-P)$. Para el calculo de la porobabilidad se usa la siguiente ecuación:
+-   **Precio Inicial del Activo Subyacente (S₀):** \$193.96\
+    (Precio actual de la acción de Amazon)
 
-$$
-P = \frac{e^r-d}{u-d}
-$$
+-   **Precio del Activo en Estado 'downer' (St(wᵈ)):\
+    **d×193.96 = 193.96−Day’s Ranged
 
-Donde $r$ es la tasa libre de riesgo.
+    -   **Factor d:** 0.9954
 
-Por otro lado se deben calcular $C_u$ y $C_d$ los cuales se obtienen como los precios de una opción europea:
+-   **Precio del Activo en Estado 'upper' (St(wᵘ)):\
+    **u×193.96 = 193.96+Day’s Range
 
-$$
-C_u = max(0, S_0\cdot u-k)\\
-C_d = max(0, S_0\cdot d-k)
-$$
+    -   **Factor u:** 1.0045
 
-Finalmente el precio de la opción se calcula de la siguiente manera:
+-   **Precio de la Opción (q₃):** \$42.74\
+    (Precio actual de la opción de compra AMZN Sep 2024 150.000 call)
 
-$$
-V = \frac{C_u\cdot P + C_d\cdot (1-P)}{1+r}
-$$
+Con estos parámetros definidos, podemos comenzar a utilizar el código de Google Colab, donde se obtuvieron los siguientes resultados al ingresar los parámetros investigados.
 
-```{r}
-binomial_model <- function(cu, p, cd, rf) {
-  return((cu*p + cd*(1-p))/(1+rf))
-} 
+**Figura 3: Retornos de la Opción Amazon upper y downer.**
 
-S <- tail(ENELCHILE$close,1)  # Precio actual del activo subyacente
-K <- 38  # Precio de ejercicio de la opción
-T <- 1  # Tiempo hasta la expiración (en años)
-r <- 0.0642 # Tasa de interés libre de riesgo
-u <- 1.1  # Factor de crecimiento en un paso hacia arriba
-d <- 0.9  # Factor de crecimiento en un paso hacia abajo
+**Fuente: Elaboración Propia (Google Colab).**
 
-Su <- S*u
-Sd <- S*d
-p <- (1+r-d)/((1+r)*(u-d))
+En la imagen se muestran los resultados del código de derivación discreta de valoración de opciones usando el modelo de Black-Scholes. Aquí está la interpretación de los resultados:
 
-cu <- max(Su - K, 0)
-cd <- max(Sd - K, 0)
+### **Sección 1: Matriz W**
 
+La matriz W incluye la representación de los retornos para tres activos: bono, acción y opción. Tiene la siguiente forma:
 
-print(paste("El precio de la opción con el Modelo Binomial es ", binomial_model(cu, p, cd, r)))
+-   **Primera fila**: Los valores negativos de los precios iniciales de los activos (bono: 1000, acción: 193.96, opción: 42.74).
 
-```
+-   **Segunda fila**: Los retornos de los activos en el escenario upper (tasa de retorno del bono 4%, retorno de la acción multiplicado por u=1.0045).
 
-### Modelo Black and Scholes (BS)
+-   **Tercera fila**: Los retornos de los activos en el escenario downer (tasa de retorno del bono 4%, retorno de la acción multiplicado por d=0.9954).
 
-```{r}
-black_scholes <- function(S, K, t, r, sigma) {
-    d1 <- (log(S/K) + (r + 0.5 * sigma^2) * t) / (sigma * sqrt(t))
-    d2 <- d1 - sigma * sqrt(t)
-    N_d1 <- pnorm(d1)
-    N_d2 <- pnorm(d2)
-    precio_call <- S * N_d1 - K * exp(-r * t) * N_d2
-    return(precio_call)
-  }
-  
-rendimientos <- diff(log(ENELCHILE$close))
-sigma<-sd(rendimientos[2:length(rendimientos)])
-volatilidad<-var(rendimientos[2:length(rendimientos)])
+### **Sección 2: Precio de los Activos**
 
+La matriz pricesse obtiene utilizando las probabilidades neutrales al riesgo que fueron calculadas previamente. El código evalúa los precios para los siguientes valores de parámetros:
 
-S<- tail(ENELCHILE$close,1) # Precio actual del activo subyacente
-K<- 38 # Precio de ejercicio de la opción
-R<- 0.0642 # Tasa de interés libre de riesgo
-t <- 1 # Tiempo hasta la expiración (en años)
+-   d=0.5 (escenario downer).
 
-print(paste("El precio de la opción con el Modelo Black and Scholes es ", black_scholes(S, K, t, R, sigma)))
+-   u=1.5 (escenario upper).
 
+-   r=0.01 (retorno libre de riesgo).
 
-```
+Los resultados son (3000, 19026, 4177).
 
-### Comparación de modelos
+### **Interpretación de estos resultados**
 
-Ambos modelos son comúnmente utilizados en las finanzas. Por lo tanto, se puede afirmar que cuentan con respaldo y fundamentos sólidos. Según el artículo de (Ahmad, 2018), los resultados del precio de la opción calculados con ambos modelos muestran una correlación muy cercana a 1, lo que significa que si el precio de la opción aumenta con un modelo, también lo hace con el otro. Sin embargo, esto no implica que ambos modelos proporcionen el mismo precio, como se puede observar en el ejercicio realizado anteriormente.
+1.  **3000**: Este es el valor calculado para el bono considerando su retorno. Esto puede ser un valor acumulado o ajustado por las probabilidades de los distintos escenarios.
 
-Estos modelos difieren en algunas cosas, tales como:
+2.  **19026.331636**: Este es el valor calculado para la acción riesgosa bajo el modelo discreto de Black-Scholes y las probabilidades neutrales al riesgo.
 
--   Precio del activo subyacente: En modelo Black and Scholes sigue una distribución lognormal mientras que el Binomial multiplica el valos $S_0$ con dos opciones ($u$ y $d$)
+3.  **4177.551636**: Este es el precio calculado para la opción de compra europea utilizando los mismos parámetros. Este valor indica lo que se pagaría por la opción considerando los retornos posibles de la acción y la naturaleza discreta de los escenarios.
 
--   Debido a lo anterior, el modelo de Black and Scholes es continuo y el Binomial discreto.
+### **Conclusión**
 
--   El modelo BS sirve solo para opciones europeas, mientras que el Binomial también sirve para opciones americanas.
+Estos cálculos te proporcionan una estimación de los precios de los activos (bono, acción, opción) basados en los parámetros de riesgo y retorno que has ingresado. El **precio de la opción** (4177.55) es particularmente importante, ya que es el resultado clave que se busca en el modelo de Black-Scholes para opciones en un entorno discreto con dos escenarios posibles (bueno y malo).
 
-También tienen algunas similitudes:
+El valor de **4177.55** como el precio de la opción de compra parece ser extremadamente alto en comparación con el valor del activo subyacente (S0=193.96) y el precio de ejercicio (K=150). Esto se pudo deber a 2 factores principalmente al analizar lo realizado. 
 
--   Ambos utilizan el precio actual del activo subyacente.
+En primer lugar, pudo haber afectado el cálculo el usar el bono T-Note con valor \$1000, ya que se aleja mucho del valor de las otras 2 variables, por lo que quizás al tener tanta diferencia, el cálculo en torno a las probabilidades se tuvo que ajustar para llegar al resultado, entregado valores muy difíciles de creer para la opción y el activo subyacente. 
 
--   Ambos usan la tasa libre de riesgo.
+En segundo lugar, puede que los parámetros de u y d se desvían bastante de 1 lo que podría influir en los cálculos. Un u y d, de 1.5 y 0.5 respectivamente, pueden sugerir cambios muy drásticos en el precio de la acción, lo que finalmente afectaría el cálculo del precio de la opción de forma no intuitiva.  
 
--   En este caso los dos se usaron para un periodo de tiempo.
-
--   Ambos consideran la volatilidad del activo.
-
-En resumen, el modelo de Black-Scholes constituye una buena herramienta analítica para valorar opciones europeas y supone movimientos continuos en las cotizaciones del mercado. En cambio, el modelo Binomial ofrece mayor flexibilidad al emplear una estructura de árbol que facilita la valoración tanto de opciones europeas como americanas. Elegir uno u otro modelo dependerá del tipo específico de opción que se esté analizando y las inferencias que se quieran hacer en relación a cómo evolucionarán los precios en el mercado financiero.
-
-# Hito 2 (en revisión):
-
-### Análisis de Largo Plazo
-
-#### Caracterización deuda
-
-Enel Chile mantiene deudas de prestamos bancarios por monedas y vencimiento, el que se detalla a continuación:
-
-![](Data/Screenshot%202023-09-28%20at%2019.15.48.png){fig-align="center" width="792"}
-
-Del mismo estado financiero, se detallan los siguientes instrumentos financieros:
-
-1.  Activos financieros no derivados: Costo amortizado, Activos financieros registrados a valor razonable con cambios en otros resultados integrales y Activos financieros registrados a valor razonable con cambios en resultados.
-2.  Efectivo y equivalentes al efectivo
-3.  Deterioro de valor de los activos financieros
-4.  Pasivos financieros excepto derivados
-5.  Derivados y operaciones de cobertura
-6.  Baja de activos y pasivos financieros
-7.  Compensación de activos y pasivos financieros
-8.  Contratos de garantías financieras
-
-La inversiones de al compañía son colocadas segun el siguiente criterio mencionado en su estado financiero:
-
-"Las inversiones de excedentes de caja se efectúan en entidades financieras nacionales y extranjeras de primera línea con límites establecidos para cada entidad.
-
-En la selección de bancos para inversiones se consideran aquellos que tengan calificación investment grade, considerando las tres principales agencias de rating internacional (Moody's, S&P y Fitch).
-
-Las colocaciones pueden ser respaldadas con bonos del tesoro de Chile y/o papeles emitidos por bancos de primera línea, privilegiando estos últimos por ofrecer mayores retornos (siempre enmarcado en las políticas de colocaciones vigentes)."
-
-A continuación se presenta la clasificación de instrumentos financieros por naturaleza y categoria:
-
-![](Data/Screenshot%202023-09-28%20at%2019.29.34.png){width="700"}
-
-#### Caracterización de emisiones históricas (Aplicación cap. 20)
-
-Segun el último estado financiero emitido por la empresa Enel Chile en junio 2023, la compañía tiene 69.166.557 miles de acciones ordinaria en circulación. En la base de la CMF no existen registros de emisiones de acciones, sin embargo si hay una inscropción en el registri de valores por una emisión de 10.000.000.000 acciones de pago ordinarias para así aumentar el capital de la empresa en \$820.000.000.000, teniendo cada acción un precio de \$82.
-
-No existe registro del procedimiento utilizado para la emisión de estas acciones, solo se detalla que la junta extraordinaria de accionistas se llevó a cabo el 20 de diciembre de 2017 y que cuya acta se redujo a escritura publica el 28 de diciembre del mismo año.
-
-#### Relación con activos derivados
-
-Para protección de la empresa, esta busca cobertura frente a posibles riesgos que puedan alterar los objetivos de la compañía. Ellos mismos señalan "Los derivados mantenidos por el Grupo corresponden fundamentalmente a operaciones contratadas con el fin de cubrir el riesgo..."
-
-Enel Chile toma en consideración y protección frente los siguientes riesgos:
-
-1.  Riesgo de tasa de interés
-2.  Riesgo de tipo de cambio
-3.  Riesgo de commodities
-4.  Riesgo de liquidez
-5.  Riesgo de crédito
-
-A continuación se desglozan los derivados de Enel Chile:
-
-![](Data/Screenshot%202023-09-28%20at%2019.49.03.png){fig-align="center"}
-
-Los derivados se registran por su valor razonable en la fecha del estado de situación financiera. En el caso de los derivados financieros, si su valor es positivo, se registran en el rubro "Otros activos financieros", y si es negativo, en el rubro "Otros pasivos financieros". Si se trata de derivados sobre commodities, el valor positivo se registra en el rubro "Cuentas comerciales por cobrar y otras cuentas por cobrar" y si es negativo en el rubro "Cuentas comerciales y otras cuentas por pagar" (EEFF Enel Chile, Junio 2023).
-
-### Reporte grupal
-
-Se decidieron los siguientes pesos del portafolio basándose en distintos factores, pero principalente la estimación de crecimiento a un año de cada uno de los activos proporcionada por Yahoo Finance. Los porcentajes del portafolio serán los siguientes:
-
--   Enel: 50%
-
--   Banco de Chile: 30%
-
--   Parque Arauco: 20%
-
-En primer lugar, se determinó que Enel Chile tendra un 50% de peso en el portafolio debido al pronostico de crecimiento que tendrá en el proximo año (65.80%). Además en los ultimos 2 años ha obtenido un retorno promedio de 37.5%, mayor que los activos elegidos en las otras industrias. Otro aspecto que nos hizo elegir un peso mayor que las otras compañia es su compromiso con el medio ambiente, aspecto que cada vez es mas valordo. Por otro lado, la empresa ha invertido fuertemente en nuevos proyectos que probablemente demuestren mayores retornos en el futuro.
-
-Por otro lado, al Banco de Chile se le asignó un 30% de peso en el portafolio debido a su liderzago en la industria bancaria en terminos de rentabilidad y ha jugado un papel sumamente importante a lo largo de los años en la industria financiera. Junto a esto, la proyección del banco en terminos de crecimiento para los proximos años, es positiva y cercana a un 11.8%.
-
-Finalmente, a Parque Arauco se le otorgó un 20% del portafolio debido a la diversificación del modelo de negocios que han implementado en los últimos años. El ingreso al negocio de los edificios multifamily podría ser una razón de gran crecimiento para la empresa en el futuro, debido a que actualmente ya operan dos edificios en Santiago, tienen proyectos que estarán operando en el corto plazo en Perú y Colombia, y tienen planes de seguir ampliando esta cantidad. Considerando la gran demanda de arriendo que existe hoy en día, la empresa podría verse muy beneficiada con la implementación de este nuevo negocio.
-
-### Caso Grupal (No requerido para versión 2024)
-
-Los datos se obtuvieron en su mayoría del Estado Financiero de la empresa Enel Chile a junio de 2023. Los datos que no pudieron ser encontrados se supusieron a partir de la misma información entregada en ese documento.
-
-El caso escogido para replicar con nuestro activo fue el del capítulo 28 del libro guía del curso "Finanzas Corporativas" de Ross, en el cual se evalúan tres opciones. A continuación, se presentan los datos:
-
-![Datos de Estado Financiero ENELCHILE](Data/Screenshot%202023-10-26%20at%2022.43.45.png)
-
-![Datos ENELCHILE para Caso Cap.28](Data/Screenshot%202023-10-26%20at%2019.47.47.png)
-
-A partir de lo anterior, se puede determianar que el la opción 1 es la mejor debido a que obtiene el VPN mayor. Las opciones 2 y 3 dan un valor menor a la 1, lo que no se consideran optimas en este escenario.
-
-## Bibliografía
-
-Ahmad Dar, A., Anuradha, N., 1 Department of Mathematics and Actuarial Science, B S Abdur Rahman Crescent University, IN, & 2 Department of Management Studies, B S Abdur Rahman Crescent University, IN. (2018). Comparison: Binomial model and Black Scholes model. *Quantitative Finance and Economics*, *2*(1), 230--245. <https://doi.org/10.3934/QFE.2018.1.230>
+Con esto dicho y analizando los resultados el valor de **4177.55** parece demasiado alto, lo que sugiere un posible error en la configuración de los parámetros o en la implementación de la variable libre de riesgo (T-Note).
